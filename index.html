@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Ozon Frontend Test App</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            href="/ozon-frontend-test/src/css/main.css"
+            rel="stylesheet"
+            type="text/css"
+        />
+
+        <!--переиспользуемые модули по заданию-->
+        <script src="/ozon-frontend-test/lib/progress-bar/progress-bar.js"></script>
+        <link
+            href="/ozon-frontend-test/lib/progress-bar/progress-bar.css"
+            rel="stylesheet"
+            type="text/css"
+        />
+        <!--переиспользуемые модули по заданию-->
+    </head>
+
+    <body>
+        <div class="main-container">
+            <div class="name-wrapper">
+                <div class="name">Progress</div>
+            </div>
+            <div class="progress-bar-wrapper">
+                <div
+                    id="progress-bar-container"
+                    class="progress-bar-container"
+                ></div>
+            </div>
+            <div class="controls-wrapper">
+                <div class="controls-container">
+                    <span class="controls-box">
+                        <div class="controls">
+                            <label class="input-value">
+                                <input
+                                    id="input-value__text"
+                                    class="input-value__text"
+                                    type="text"
+                                    inputmode="numeric"
+                                />
+                                <span class="toggle__label">Value</span>
+                            </label>
+                        </div>
+                    </span>
+                    <span class="controls-box">
+                        <div class="controls">
+                            <label
+                                id="toggle-animate"
+                                class="toggle toggle-animate"
+                            >
+                                <input
+                                    id="toggle-animate__checkbox"
+                                    class="toggle_input toggle-animate__checkbox"
+                                    type="checkbox"
+                                />
+                                <span
+                                    class="toggle_box toggle-animate__switch"
+                                ></span>
+                                <span class="toggle__label">Animate</span>
+                            </label>
+                        </div>
+                    </span>
+                    <span class="controls-box">
+                        <div class="controls">
+                            <label id="toggle-hide" class="toggle toggle-hide">
+                                <input
+                                    id="toggle-hide__checkbox"
+                                    class="toggle_input toggle-hide__checkbox"
+                                    type="checkbox"
+                                />
+                                <span
+                                    class="toggle_box toggle-hide__switch"
+                                ></span>
+                                <span class="toggle__label">Hide</span>
+                            </label>
+                        </div>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </body>
+
+    <script>
+        const bar = new ProgressBar();
+        window.addEventListener("load", function () {
+            document
+                .getElementById("progress-bar-container")
+                .appendChild(bar.render());
+        });
+
+        const valueInput = document.getElementById("input-value__text");
+        valueInput.addEventListener("input", (event) => {
+            let v = Number.parseInt(valueInput.value);
+            if (v >= 0 && v <= 100) {
+                valueInput.value = v.toString();
+            } else {
+                valueInput.value = valueInput.value.slice(0, -1);
+            }
+
+            bar.setValue(valueInput.value);
+        });
+
+        let anim = false;
+        document
+            .getElementById("toggle-animate__checkbox")
+            .addEventListener("change", (event) => {
+                anim = !anim;
+                bar.setAnimated(anim);
+            });
+
+        let hide = false;
+        document
+            .getElementById("toggle-hide__checkbox")
+            .addEventListener("change", (event) => {
+                hide = !hide;
+                bar.setHidden(hide);
+            });
+    </script>
+</html>

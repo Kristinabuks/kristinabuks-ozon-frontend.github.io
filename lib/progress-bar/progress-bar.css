@@ -1,0 +1,54 @@
+:root {
+    --progress-bar-color: #2661f7;
+    --progress-bar-shadow-color: #eff3f6;
+
+    --pi: 3.14159265358979;
+    --stroke-to-radius: 0.2;
+    --radius: calc(100% / (2 + var(--stroke-to-radius)));
+    --stroke: calc(var(--stroke-to-radius) * var(--radius));
+    --stroke-dasharray: calc(2 * var(--pi) * var(--radius));
+
+    --svg-offset: calc(var(--radius) + var(--stroke) / 2);
+}
+
+.progress-bar-svg-container {
+    transform: rotate(-90deg);
+    width: 100%;
+    height: 100%;
+}
+
+.progress-bar-svg-container-hidden {
+    opacity: 0;
+}
+
+.progress-bar-svg-progress {
+    fill: none;
+    stroke: var(--progress-bar-color);
+    stroke-linecap: butt;
+    stroke-width: var(--stroke);
+    stroke-dasharray: var(--stroke-dasharray);
+    transform: translate(var(--svg-offset), var(--svg-offset));
+}
+
+@keyframes progress-animation {
+    from {
+        stroke-dashoffset: var(--stroke-dasharray);
+    }
+}
+
+.progress-bar-svg-progress-normal {
+    transition: stroke-dashoffset 1s;
+}
+
+.progress-bar-svg-progress-animating {
+    animation: progress-animation 1s infinite;
+}
+
+.progress-bar-svg-shadow {
+    fill: none;
+    stroke: var(--progress-bar-shadow-color);
+    stroke-linecap: butt;
+    stroke-width: var(--stroke);
+    stroke-dasharray: var(--stroke-dasharray);
+    transform: translate(var(--svg-offset), var(--svg-offset));
+}

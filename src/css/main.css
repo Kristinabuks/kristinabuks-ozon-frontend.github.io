@@ -1,0 +1,218 @@
+:root {
+    --main-width: 320px;
+    --main-height: 568px;
+
+    --progressbar-size: 117px;
+
+    --main-font: 15px;
+    --input-value-border-width: 1px;
+
+    --first-color: #2661f7;
+    --second-color: #eff3f6;
+    --white: #ffffff;
+}
+
+@font-face {
+    font-family: "GT Eesti Pro Light";
+    src: url("/ozon-frontend-test/assets/fonts/gt-esti-pro-light.otf")
+        format("opentype");
+}
+
+input[type="text"] {
+    font-family: "GT Eesti Pro Light", arial, sans-serif;
+    font-weight: bold;
+    font-size: var(--main-font);
+    padding-top: 2px;
+}
+
+body {
+    font-family: "GT Eesti Pro Light", arial, sans-serif;
+    font-weight: bold;
+    font-size: var(--main-font);
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--second-color);
+}
+
+.main-container {
+    display: flex;
+    background-color: var(--white);
+}
+
+.name-wrapper {
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+.name {
+    position: absolute;
+    top: 23px;
+    left: 18px;
+}
+
+.progress-bar-container {
+    display: flex;
+    height: var(--progressbar-size);
+    width: var(--progressbar-size);
+}
+
+.controls-container {
+    display: flex;
+    flex-direction: column;
+    height: var(--progressbar-size);
+    width: var(--progressbar-size);
+}
+
+.controls-box {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.controls {
+    height: 1.7em;
+    font-size: var(--main-font);
+}
+
+@media screen and (orientation: portrait) {
+    .main-container {
+        height: var(--main-height);
+        width: var(--main-width);
+        flex-direction: column;
+    }
+
+    .progress-bar-wrapper {
+        height: 50%;
+        width: 100%;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+    }
+
+    .progress-bar-container {
+        align-items: flex-end;
+        justify-content: center;
+        margin-bottom: 4em;
+    }
+
+    .controls-wrapper {
+        height: 50%;
+        width: 100%;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+    }
+
+    .controls-container {
+        align-items: flex-start;
+        justify-content: center;
+        margin-top: 2em;
+    }
+}
+
+@media screen and (orientation: landscape) {
+    .main-container {
+        height: var(--main-width);
+        width: var(--main-height);
+        flex-direction: row;
+    }
+
+    .progress-bar-wrapper {
+        height: 100%;
+        width: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+
+    .progress-bar-container {
+        align-items: center;
+        justify-content: flex-end;
+        margin-right: 4em;
+    }
+
+    .controls-wrapper {
+        height: 100%;
+        width: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    .controls-container {
+        align-items: center;
+        justify-content: flex-start;
+        margin-left: 2em;
+    }
+}
+
+.toggle_input {
+    position: absolute;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.toggle {
+    padding-left: 3.2em;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.toggle_box {
+    position: absolute;
+    width: 3em;
+    height: 1.7em;
+    margin-left: -3.2em;
+    border-radius: 1em;
+    background-color: var(--second-color);
+    transition: background 0.2s ease-in-out;
+}
+
+.toggle_box::before {
+    content: "";
+    display: block;
+    width: 1.4em;
+    height: 1.4em;
+    border-radius: 1em;
+    background-color: var(--white);
+    position: absolute;
+    left: 0.15em;
+    top: 0.15em;
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}
+
+.toggle_input:checked + .toggle_box {
+    background-color: var(--first-color);
+}
+
+.toggle_input:checked + .toggle_box::before {
+    left: 1.45em;
+}
+
+.toggle__label {
+    padding-left: 1em;
+}
+
+.input-value__text {
+    width: calc(3em - 2 * var(--input-value-border-width));
+    height: calc(1.7em - 2 * var(--input-value-border-width));
+    border-radius: 1em;
+    border: var(--input-value-border-width) solid black;
+    text-align: center;
+    padding: 0;
+}
+
+.input-value__text:focus {
+    outline: none;
+}
